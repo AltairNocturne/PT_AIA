@@ -45,7 +45,7 @@ export default function Berita() {
           </div>
           <Link
             className="inline-flex items-center gap-2 font-label-button text-label-button text-primary hover:text-on-tertiary-container transition-colors group"
-            to="/lowongan-kerja"
+            to="/berita"
           >
             <span>{t('home.berita.viewAll')}</span>
             <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -83,7 +83,7 @@ export default function Berita() {
               <div className="px-6 pb-6 pt-0">
                 <Link
                   className="inline-flex items-center gap-1 text-label-button font-label-button text-primary hover:text-on-tertiary-container"
-                  to="/lowongan-kerja"
+                  to="/berita"
                 >
                   <span>{t('home.berita.readMore')}</span>
                   <span className="material-symbols-outlined text-[14px]">arrow_forward</span>

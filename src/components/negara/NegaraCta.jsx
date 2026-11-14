@@ -13,7 +13,7 @@ export default function NegaraCta() {
           <div className="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-primary-container/40 pointer-events-none blur-3xl"></div>
           <div className="relative z-10 max-w-3xl">
             <span className="font-label-eyebrow text-label-eyebrow text-tertiary-fixed-dim uppercase tracking-widest block mb-2">
-              KONSULTASI KORIDOR REGULASI
+              {t('negara.cta.eyebrow')}
             </span>
             <h2 className="font-headline-xl text-headline-xl text-on-primary tracking-tight font-bold mb-4">
               {t('negara.cta.title')}

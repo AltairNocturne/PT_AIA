@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
+// Foto dummy (sumber: Unsplash via Picsum). Ganti ke foto asli nanti.
+const dummy = (seed) => `https://picsum.photos/seed/${seed}/800/500`
+
 export default function NegaraTujuan() {
   const { t } = useTranslation()
 
   const countries = [
     {
-      flag: '🇹🇼',
+      image: dummy('sbm-negara-taiwan'),
       nameKey: 'home.negaraTujuan.cTaiwan',
       badgeKey: 'home.negaraTujuan.badgeVerified',
       badgeClass: 'bg-surface-container text-secondary',
@@ -17,7 +20,7 @@ export default function NegaraTujuan() {
       ],
     },
     {
-      flag: '🇲🇾',
+      image: dummy('sbm-negara-malaysia'),
       nameKey: 'home.negaraTujuan.cMalaysia',
       badgeKey: 'home.negaraTujuan.badgeVerified',
       badgeClass: 'bg-surface-container text-secondary',
@@ -28,7 +31,7 @@ export default function NegaraTujuan() {
       ],
     },
     {
-      flag: '🇸🇬',
+      image: dummy('sbm-negara-singapura'),
       nameKey: 'home.negaraTujuan.cSingapore',
       badgeKey: 'home.negaraTujuan.badgeVerified',
       badgeClass: 'bg-surface-container text-secondary',
@@ -39,7 +42,7 @@ export default function NegaraTujuan() {
       ],
     },
     {
-      flag: '🇭🇰',
+      image: dummy('sbm-negara-hongkong'),
       nameKey: 'home.negaraTujuan.cHongKong',
       badgeKey: 'home.negaraTujuan.badgeVerified',
       badgeClass: 'bg-surface-container text-secondary',
@@ -49,7 +52,7 @@ export default function NegaraTujuan() {
       ],
     },
     {
-      flag: '🇸🇦',
+      image: dummy('sbm-negara-saudi'),
       nameKey: 'home.negaraTujuan.cSaudi',
       badgeKey: 'home.negaraTujuan.badgeSpsk',
       badgeClass: 'bg-surface-container text-secondary',
@@ -59,7 +62,7 @@ export default function NegaraTujuan() {
       ],
     },
     {
-      flag: '🇧🇳',
+      image: dummy('sbm-negara-brunei'),
       nameKey: 'home.negaraTujuan.cBrunei',
       badgeKey: 'home.negaraTujuan.badgeVerified',
       badgeClass: 'bg-surface-container text-secondary',
@@ -70,7 +73,7 @@ export default function NegaraTujuan() {
       ],
     },
     {
-      flag: '🇵🇱',
+      image: dummy('sbm-negara-polandia'),
       nameKey: 'home.negaraTujuan.cPoland',
       badgeKey: 'home.negaraTujuan.badgeEurope',
       badgeClass: 'bg-secondary-fixed text-primary',
@@ -101,43 +104,66 @@ export default function NegaraTujuan() {
           {countries.map((c, i) => (
             <div
               key={i}
-              className="bg-surface-container-lowest rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+              className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col"
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl">{c.flag}</span>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase ${c.badgeClass}`}>
-                    {t(c.badgeKey)}
-                  </span>
-                </div>
-                <h3 className="font-headline-sm text-headline-sm text-primary mb-1">
+              {/* Foto */}
+              <div className="relative h-40 overflow-hidden group bg-gradient-to-br from-primary to-primary-container">
+                {c.image && (
+                  <img
+                    src={c.image}
+                    alt={t(c.nameKey)}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <span
+                  className={`absolute top-3 right-3 text-[10px] font-bold px-2 py-0.5 rounded uppercase ${c.badgeClass}`}
+                >
+                  {t(c.badgeKey)}
+                </span>
+                <h3 className="absolute bottom-3 left-4 right-4 font-headline-sm text-headline-sm text-white">
                   {t(c.nameKey)}
                 </h3>
-                <p className="font-label-caption text-label-caption text-secondary mb-3">
-                  {t('home.negaraTujuan.mainSectors')}
-                </p>
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {c.sectors.map((sec, j) => (
-                    <span key={j} className="text-xs bg-surface-container-low px-2 py-1 rounded text-primary">
-                      {t(sec)}
-                    </span>
-                  ))}
-                </div>
               </div>
-              <Link
-                className="text-body-sm font-label-button text-primary hover:text-on-tertiary-container flex items-center justify-between pt-3 border-t border-surface-container-low"
-                to="/negara-tujuan"
-              >
-                <span>{t('home.negaraTujuan.viewDetails')}</span>
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </Link>
+
+              {/* Konten */}
+              <div className="p-5 flex flex-col justify-between flex-1">
+                <div>
+                  <p className="font-label-caption text-label-caption text-secondary mb-3">
+                    {t('home.negaraTujuan.mainSectors')}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {c.sectors.map((sec, j) => (
+                      <span
+                        key={j}
+                        className="text-xs bg-surface-container-low px-2 py-1 rounded text-primary"
+                      >
+                        {t(sec)}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <Link
+                  className="text-body-sm font-label-button text-primary hover:text-on-tertiary-container flex items-center justify-between pt-3 border-t border-surface-container-low"
+                  to="/negara-tujuan"
+                >
+                  <span>{t('home.negaraTujuan.viewDetails')}</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </Link>
+              </div>
             </div>
           ))}
 
           {/* Global Destination Summary Card */}
           <div className="bg-primary-container text-on-primary rounded-xl p-5 shadow-md flex flex-col justify-between">
             <div>
-              <span className="material-symbols-outlined text-tertiary-fixed text-[32px] mb-3">travel_explore</span>
+              <span className="material-symbols-outlined text-tertiary-fixed text-[32px] mb-3">
+                travel_explore
+              </span>
               <h3 className="font-headline-sm text-headline-sm text-on-primary mb-2">
                 {t('home.negaraTujuan.promoTitle')}
               </h3>

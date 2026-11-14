@@ -19,6 +19,8 @@ const NAV = [
   { key: 'services', to: '/layanan', labelKey: 'navbar.services' },
   { key: 'countries', to: '/negara-tujuan', labelKey: 'navbar.destinations' },
   { key: 'jobs', to: '/lowongan-kerja', labelKey: 'navbar.jobOpenings' },
+  { key: 'gallery', to: '/galeri', labelKey: 'navbar.gallery' },
+  { key: 'news', to: '/berita', labelKey: 'navbar.news' },
 ]
 
 const CTA = { to: '/kontak', labelKey: 'navbar.contactUs' }

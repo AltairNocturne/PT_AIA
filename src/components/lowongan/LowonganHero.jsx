@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function LowonganHero() {
+  const { t } = useTranslation();
+
   return (
     <>
       {/* BREADCRUMB & CONTEXT STRIP */}
@@ -10,18 +13,18 @@ export default function LowonganHero() {
           <nav aria-label="Breadcrumb" className="flex items-center gap-space-xs font-label-caption text-label-caption text-on-surface-variant">
             <Link className="hover:text-primary transition-colors flex items-center gap-1" to="/">
               <span className="material-symbols-outlined text-[14px]">home</span>
-              <span>Beranda</span>
+              <span>{t('lowongan.hero.breadcrumbHome')}</span>
             </Link>
             <span className="text-outline-variant">/</span>
-            <span className="text-primary font-semibold">Lowongan Kerja Luar Negeri</span>
+            <span className="text-primary font-semibold">{t('lowongan.hero.breadcrumbCurrent')}</span>
           </nav>
           <div className="hidden md:flex items-center gap-space-sm text-on-surface-variant font-label-caption text-label-caption">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-highest text-primary font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-pulse"></span>
-              Data Terintegrasi SISKOP2MI RI
+              {t('lowongan.hero.siskopmiSync')}
             </span>
             <span className="text-outline-variant">•</span>
-            <span>Pembaruan: Hari ini, 09:00 WIB</span>
+            <span>{t('lowongan.hero.lastUpdated')}</span>
           </div>
         </div>
       </section>
@@ -34,30 +37,30 @@ export default function LowonganHero() {
             <div className="lg:col-span-8 flex flex-col gap-3">
               <div className="inline-flex items-center gap-2 text-on-tertiary-container font-label-eyebrow text-label-eyebrow uppercase tracking-widest">
                 <span className="material-symbols-outlined text-[18px]">verified_user</span>
-                <span>Peluang Karir Global Resmi &amp; Terakreditasi</span>
+                <span>{t('lowongan.hero.eyebrow')}</span>
               </div>
               <h1 className="font-headline-xl text-headline-xl text-primary tracking-tight leading-tight">
-                Pusat Informasi &amp; Lowongan Kerja Luar Negeri Terverifikasi
+                {t('lowongan.hero.title')}
               </h1>
               <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
-                Akses langsung lowongan resmi bagi Pekerja Migran Indonesia (PMI) dengan Surat Izin Perekrutan (SIP2MI) aktif. Seluruh proses penempatan diawasi langsung oleh Kementerian Ketenagakerjaan RI dan BP2MI tanpa pungutan liar, menjamin transparansi kontrak kerja dan hak asasi Anda.
+                {t('lowongan.hero.desc')}
               </p>
             </div>
             {/* Metrics pill box */}
             <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
               <div className="flex items-center justify-between py-1">
-                <span className="font-body-sm text-body-sm text-on-surface-variant">SIP2MI Aktif Tersedia</span>
-                <span className="font-headline-sm text-headline-sm text-primary font-bold">142 Kuota</span>
+                <span className="font-body-sm text-body-sm text-on-surface-variant">{t('lowongan.hero.stat1Label')}</span>
+                <span className="font-headline-sm text-headline-sm text-primary font-bold">{t('lowongan.hero.stat1Val')}</span>
               </div>
               <div className="h-px w-full bg-surface-container"></div>
               <div className="flex items-center justify-between py-1">
-                <span className="font-body-sm text-body-sm text-on-surface-variant">Negara Mitra Operasional</span>
-                <span className="font-headline-sm text-headline-sm text-on-tertiary-container font-bold">6 Negara</span>
+                <span className="font-body-sm text-body-sm text-on-surface-variant">{t('lowongan.hero.stat2Label')}</span>
+                <span className="font-headline-sm text-headline-sm text-on-tertiary-container font-bold">{t('lowongan.hero.stat2Val')}</span>
               </div>
               <div className="h-px w-full bg-surface-container"></div>
               <div className="flex items-center justify-between py-1">
-                <span className="font-body-sm text-body-sm text-on-surface-variant">Tingkat Penempatan Legal</span>
-                <span className="font-headline-sm text-headline-sm text-primary font-bold">100% Tercatat</span>
+                <span className="font-body-sm text-body-sm text-on-surface-variant">{t('lowongan.hero.stat3Label')}</span>
+                <span className="font-headline-sm text-headline-sm text-primary font-bold">{t('lowongan.hero.stat3Val')}</span>
               </div>
             </div>
           </div>
@@ -69,17 +72,17 @@ export default function LowonganHero() {
               </div>
               <div className="flex flex-col">
                 <span className="font-headline-sm text-headline-sm text-tertiary-fixed-dim font-bold tracking-tight">
-                  Waspada Calo &amp; Pungutan Liar (Pungli)
+                  {t('lowongan.hero.warningTitle')}
                 </span>
                 <p className="font-body-sm text-body-sm text-on-primary-container max-w-2xl mt-0.5">
-                  PT Amal Ichwan Arindo tidak pernah memungut pembayaran melalui rekening perorangan atau calo lapangan. Pendaftaran dan verifikasi hanya sah melalui sistem resmi dan kantor operasional kami yang berizin Kemnaker RI.
+                  {t('lowongan.hero.warningDesc')}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              <a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-tertiary-fixed-dim text-tertiary font-label-button text-label-button hover:bg-tertiary-fixed transition-colors" href="#lapor-calo">
+              <a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-tertiary-fixed-dim text-tertiary font-label-button text-label-button hover:bg-tertiary-fixed transition-colors" href="#inquiry">
                 <span className="material-symbols-outlined text-[16px]">report</span>
-                <span>Layanan Aduan Satgas</span>
+                <span>{t('lowongan.hero.warningBtn')}</span>
               </a>
             </div>
           </div>

@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function NegaraFaq() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
-      q: 'Bagaimana memastikan bahwa visa yang diterbitkan adalah visa kerja resmi, bukan visa turis?',
-      a: 'Seluruh calon pekerja yang diberangkatkan oleh PT Amal Ichwan Arindo menerima visa kerja berjenis Work Permit, Specified Skilled Worker Visa, atau Zezwolenie Typ A yang diterbitkan resmi oleh kedutaan besar negara tujuan di Jakarta. Dokumen ini dapat diverifikasi keasliannya pada sistem paspor elektronik dan dicocokkan dengan data e-PMI BP2MI sebelum keberangkatan di bandara internasional.'
+      q: t('negara.faq.q1'),
+      a: t('negara.faq.a1')
     },
     {
-      q: 'Apakah ada program yang bebas biaya penempatan (Zero-Fee)?',
-      a: 'Ya. Mengacu pada Peraturan BP2MI No. 9 Tahun 2020 dan skema bilateral khusus (seperti skema SPSK Arab Saudi serta sektor tertentu di Taiwan dan Jepang), komponen biaya pokok seperti tiket penerbangan keberangkatan, visa, asuransi, dan tes kesehatan ditanggung sepenuhnya oleh pihak pemberi kerja (employer). Rincian biaya selalu dijelaskan secara transparan sebelum penandatanganan akad.'
+      q: t('negara.faq.q2'),
+      a: t('negara.faq.a2')
     },
     {
-      q: 'Bagaimana jika terjadi kendala kerja atau perselisihan upah saat berada di luar negeri?',
-      a: 'Pekerja dilindungi oleh tiga lapis perlindungan: Perjanjian Kerja resmi yang memiliki kekuatan hukum, pendampingan dari kantor perwakilan/mitra agensi PT Amal Ichwan Arindo di negara penempatan, serta intervensi resmi dari Atase Ketenagakerjaan KBRI setempat. Kami menyediakan saluran komunikasi darurat 24 jam untuk merespons pelaporan pekerja.'
+      q: t('negara.faq.q3'),
+      a: t('negara.faq.a3')
     },
     {
-      q: 'Apakah calon pekerja wajib mengikuti pelatihan bahasa sebelum diberangkatkan?',
-      a: 'Ya, untuk destinasi seperti Jepang dan Taiwan, sertifikasi bahasa (seperti JLPT/JFT-Basic untuk Jepang, dan pengenalan kosakata industri untuk Taiwan) adalah syarat mutlak regulasi. Seluruh kurikulum pelatihan diselenggarakan langsung di Balai Latihan Kerja kami dengan instruktur berlisensi.'
+      q: t('negara.faq.q4'),
+      a: t('negara.faq.a4')
     }
   ];
 
@@ -30,12 +32,12 @@ export default function NegaraFaq() {
     <section className="w-full bg-surface-container-low/50 py-space-xl">
       <div className="max-w-4xl mx-auto px-margin">
         <div className="text-center mb-10">
-          <span className="font-label-eyebrow text-label-eyebrow text-on-tertiary-container uppercase tracking-widest block mb-2">TANYA JAWAB REGULASI</span>
+          <span className="font-label-eyebrow text-label-eyebrow text-on-tertiary-container uppercase tracking-widest block mb-2">{t('negara.faq.eyebrow')}</span>
           <h2 className="font-headline-lg text-headline-lg text-primary tracking-tight">
-            Pertanyaan Lazim Seputar Negara Tujuan Penempatan
+            {t('negara.faq.title')}
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant mt-2">
-            Pahami hak dan ketentuan hukum Anda sebelum mengajukan lamaran penempatan luar negeri.
+            {t('negara.faq.desc')}
           </p>
         </div>
         <div className="space-y-space-sm" id="faqAccordion">

@@ -8,6 +8,8 @@ import LayananPage from './pages/LayananPage'
 import NegaraTujuanPage from './pages/NegaraTujuanPage'
 import LowonganPage from './pages/LowonganPage'
 import DetailLowonganPage from './pages/DetailLowonganPage'
+import GaleriPage from './pages/GaleriPage'
+import BeritaPage from './pages/BeritaPage'
 import KontakPage from './pages/KontakPage'
 
 export default function App() {
@@ -31,6 +33,10 @@ export default function App() {
           <Route path="/negara-tujuan" element={<NegaraTujuanPage />} />
           <Route path="/lowongan-kerja" element={<LowonganPage />} />
           <Route path="/detail-lowongan" element={<DetailLowonganPage />} />
+          <Route path="/galeri" element={<GaleriPage />} />
+          <Route path="/gallery" element={<GaleriPage />} />
+          <Route path="/berita" element={<BeritaPage />} />
+          <Route path="/news" element={<BeritaPage />} />
           <Route path="/kontak" element={<KontakPage />} />
         </Route>
       </Routes>

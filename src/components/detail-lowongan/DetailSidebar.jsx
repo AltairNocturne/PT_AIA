@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function DetailSidebar() {
+  const { t } = useTranslation();
   const [fullName, setFullName] = useState('');
   const [nikNumber, setNikNumber] = useState('');
   const [whatsappNumber, setWhatsappNumber] = useState('');
@@ -25,7 +27,7 @@ export default function DetailSidebar() {
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const names = Array.from(e.target.files).map((f) => f.name).join(', ');
-      setSelectedFileName(`File terpilih: ${names}`);
+      setSelectedFileName(`${t('detailLowongan.sidebar.fileSelected')} ${names}`);
     } else {
       setSelectedFileName('');
     }
@@ -36,20 +38,20 @@ export default function DetailSidebar() {
     const newErrors = {};
 
     if (!fullName.trim()) {
-      newErrors.fullName = 'Nama lengkap wajib diisi sesuai KTP.';
+      newErrors.fullName = t('detailLowongan.sidebar.errName');
     }
     if (!nikNumber || nikNumber.length !== 16) {
-      newErrors.nikNumber = 'Harus 16 angka valid sesuai e-KTP.';
+      newErrors.nikNumber = t('detailLowongan.sidebar.errNik');
     }
     const cleanWa = whatsappNumber.replace(/[^0-9]/g, '');
     if (!cleanWa || cleanWa.length < 10) {
-      newErrors.whatsapp = 'Nomor WhatsApp tidak valid (min. 10 digit).';
+      newErrors.whatsapp = t('detailLowongan.sidebar.errWa');
     }
     if (!originCity.trim()) {
-      newErrors.originCity = 'Domisili asal wajib diisi.';
+      newErrors.originCity = t('detailLowongan.sidebar.errCity');
     }
     if (!agreeConsent) {
-      newErrors.consent = 'Wajib menyetujui pernyataan keabsahan data.';
+      newErrors.consent = t('detailLowongan.sidebar.errConsent');
     }
 
     setErrors(newErrors);
@@ -83,18 +85,18 @@ export default function DetailSidebar() {
         <div className="mb-space-md">
           <div className="flex items-center justify-between mb-1">
             <span className="font-label-eyebrow text-label-eyebrow text-on-tertiary-container uppercase tracking-wider">
-              Formulir Kandidat Resmi
+              {t('detailLowongan.sidebar.formEyebrow')}
             </span>
             <span className="inline-flex items-center gap-1 font-label-caption text-label-caption text-secondary">
               <span className="material-symbols-outlined text-[14px]">lock</span>
-              SSL Enkripsi 256-bit
+              {t('detailLowongan.sidebar.sslEncrypted')}
             </span>
           </div>
           <h3 className="font-headline-md text-headline-md text-on-surface">
-            Daftar Posisi Operator Taiwan
+            {t('detailLowongan.sidebar.formTitle')}
           </h3>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-            Isi formulir dengan data yang sesuai KTP resmi Anda. Tidak dipungut biaya pendaftaran awal.
+            {t('detailLowongan.sidebar.formDesc')}
           </p>
         </div>
 
@@ -102,14 +104,14 @@ export default function DetailSidebar() {
           {/* Nama Lengkap */}
           <div className="space-y-1">
             <label className="block font-label-button text-label-button text-on-surface" htmlFor="fullName">
-              Nama Lengkap Sesuai KTP <span className="text-error">*</span>
+              {t('detailLowongan.sidebar.nameLabel')} <span className="text-error">*</span>
             </label>
             <div className="relative">
               <input
                 className="w-full h-11 px-3 pl-10 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all"
                 id="fullName"
                 name="fullName"
-                placeholder="Contoh: Rian Bagus Pratama"
+                placeholder={t('detailLowongan.sidebar.namePlaceholder')}
                 required
                 type="text"
                 value={fullName}
@@ -126,10 +128,10 @@ export default function DetailSidebar() {
           <div className="space-y-1">
             <div className="flex items-center justify-between">
               <label className="block font-label-button text-label-button text-on-surface" htmlFor="nikNumber">
-                Nomor Induk Kependudukan (NIK) <span className="text-error">*</span>
+                {t('detailLowongan.sidebar.nikLabel')} <span className="text-error">*</span>
               </label>
               <span className={`font-label-caption text-label-caption ${nikNumber.length === 16 ? 'text-on-tertiary-container font-bold' : 'text-secondary'}`} id="nikCounter">
-                {nikNumber.length}/16 digit
+                {nikNumber.length}/16 {t('detailLowongan.sidebar.nikDigit')}
               </span>
             </div>
             <div className="relative">
@@ -139,7 +141,7 @@ export default function DetailSidebar() {
                 inputMode="numeric"
                 maxLength={16}
                 name="nikNumber"
-                placeholder="3201xxxxxxxxxxxx"
+                placeholder={t('detailLowongan.sidebar.nikPlaceholder')}
                 required
                 type="text"
                 value={nikNumber}
@@ -155,7 +157,7 @@ export default function DetailSidebar() {
           {/* Nomor WhatsApp Aktif */}
           <div className="space-y-1">
             <label className="block font-label-button text-label-button text-on-surface" htmlFor="whatsappNumber">
-              Nomor WhatsApp Aktif <span className="text-error">*</span>
+              {t('detailLowongan.sidebar.waLabel')} <span className="text-error">*</span>
             </label>
             <div className="relative">
               <input
@@ -163,7 +165,7 @@ export default function DetailSidebar() {
                 id="whatsappNumber"
                 inputMode="tel"
                 name="whatsappNumber"
-                placeholder="081234567890"
+                placeholder={t('detailLowongan.sidebar.waPlaceholder')}
                 required
                 type="tel"
                 value={whatsappNumber}
@@ -171,7 +173,9 @@ export default function DetailSidebar() {
               />
               <span className="material-symbols-outlined text-outline absolute left-3 top-3 text-[18px]">chat</span>
             </div>
-            <p className="font-label-caption text-label-caption text-on-surface-variant">Tim rekrutmen kami akan mengirim undangan seleksi lewat nomor ini.</p>
+            <p className="font-label-caption text-label-caption text-on-surface-variant">
+              {t('detailLowongan.sidebar.waNotice')}
+            </p>
             {errors.whatsapp && (
               <p className="font-label-caption text-label-caption text-error" id="whatsappError">{errors.whatsapp}</p>
             )}
@@ -180,14 +184,14 @@ export default function DetailSidebar() {
           {/* Domisili / Kota Asal */}
           <div className="space-y-1">
             <label className="block font-label-button text-label-button text-on-surface" htmlFor="originCity">
-              Kota / Kabupaten Domisili Saat Ini <span className="text-error">*</span>
+              {t('detailLowongan.sidebar.cityLabel')} <span className="text-error">*</span>
             </label>
             <div className="relative">
               <input
                 className="w-full h-11 px-3 pl-10 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all"
                 id="originCity"
                 name="originCity"
-                placeholder="Contoh: Cilacap, Jawa Tengah"
+                placeholder={t('detailLowongan.sidebar.cityPlaceholder')}
                 required
                 type="text"
                 value={originCity}
@@ -204,7 +208,7 @@ export default function DetailSidebar() {
           <div className="grid grid-cols-2 gap-space-sm">
             <div className="space-y-1">
               <label className="block font-label-button text-label-button text-on-surface" htmlFor="educationSelect">
-                Pendidikan <span className="text-error">*</span>
+                {t('detailLowongan.sidebar.eduLabel')} <span className="text-error">*</span>
               </label>
               <select
                 className="w-full h-11 px-2.5 rounded bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
@@ -214,17 +218,17 @@ export default function DetailSidebar() {
                 value={education}
                 onChange={(e) => setEducation(e.target.value)}
               >
-                <option disabled value="">Pilih...</option>
-                <option value="SMK_TEKNIK">SMK Teknik</option>
-                <option value="SMA_IPA">SMA IPA</option>
-                <option value="SMK_LAIN">SMK Lainnya</option>
-                <option value="DIPLOMA">Diploma (D3)</option>
-                <option value="SARJANA">Sarjana (S1)</option>
+                <option disabled value="">{t('detailLowongan.sidebar.eduPlaceholder')}</option>
+                <option value="SMK_TEKNIK">{t('detailLowongan.sidebar.eduSmkTeknik')}</option>
+                <option value="SMA_IPA">{t('detailLowongan.sidebar.eduSmaIpa')}</option>
+                <option value="SMK_LAIN">{t('detailLowongan.sidebar.eduSmkLain')}</option>
+                <option value="DIPLOMA">{t('detailLowongan.sidebar.eduDiploma')}</option>
+                <option value="SARJANA">{t('detailLowongan.sidebar.eduSarjana')}</option>
               </select>
             </div>
             <div className="space-y-1">
               <label className="block font-label-button text-label-button text-on-surface" htmlFor="experienceSelect">
-                Pengalaman <span className="text-error">*</span>
+                {t('detailLowongan.sidebar.expLabel')} <span className="text-error">*</span>
               </label>
               <select
                 className="w-full h-11 px-2.5 rounded bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
@@ -234,11 +238,11 @@ export default function DetailSidebar() {
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               >
-                <option disabled value="">Pilih...</option>
-                <option value="FRESH">Fresh Graduate</option>
-                <option value="PABRIK_1">Pabrik &lt; 1 Thn</option>
-                <option value="PABRIK_2">Pabrik &gt; 2 Thn</option>
-                <option value="EX_TAIWAN">Eks-Taiwan (Resmi)</option>
+                <option disabled value="">{t('detailLowongan.sidebar.expPlaceholder')}</option>
+                <option value="FRESH">{t('detailLowongan.sidebar.expFresh')}</option>
+                <option value="PABRIK_1">{t('detailLowongan.sidebar.expFactory1')}</option>
+                <option value="PABRIK_2">{t('detailLowongan.sidebar.expFactory2')}</option>
+                <option value="EX_TAIWAN">{t('detailLowongan.sidebar.expExTaiwan')}</option>
               </select>
             </div>
           </div>
@@ -246,7 +250,7 @@ export default function DetailSidebar() {
           {/* Upload Berkas Mini Dropzone */}
           <div className="space-y-1">
             <label className="block font-label-button text-label-button text-on-surface">
-              Lampiran Berkas (CV / Foto KTP / Ijazah)
+              {t('detailLowongan.sidebar.fileLabel')}
             </label>
             <label className="p-space-md bg-surface-container-low rounded text-center cursor-pointer hover:bg-surface-container transition-colors block" id="dropzoneContainer">
               <input
@@ -258,8 +262,8 @@ export default function DetailSidebar() {
                 onChange={handleFileChange}
               />
               <span className="material-symbols-outlined text-secondary text-[28px] mb-1">cloud_upload</span>
-              <div className="font-label-button text-label-button text-primary">Klik untuk Pilih File Dokumen</div>
-              <div className="font-label-caption text-label-caption text-secondary mt-0.5">Format PDF atau JPG (Maks. 5MB)</div>
+              <div className="font-label-button text-label-button text-primary">{t('detailLowongan.sidebar.fileClick')}</div>
+              <div className="font-label-caption text-label-caption text-secondary mt-0.5">{t('detailLowongan.sidebar.fileFormat')}</div>
               {selectedFileName && (
                 <div className="font-label-caption text-label-caption text-on-tertiary-container font-semibold mt-2" id="fileUploadName">
                   {selectedFileName}
@@ -280,7 +284,7 @@ export default function DetailSidebar() {
               onChange={(e) => setAgreeConsent(e.target.checked)}
             />
             <label className="font-label-caption text-label-caption text-on-surface-variant leading-tight cursor-pointer" htmlFor="agreeConsent">
-              Saya menyatakan data di atas adalah benar, berstatus lajang/menikah sah, siap menjalani tes MCU resmi, dan bersedia mengikuti prosedur penempatan resmi SISKOP2MI tanpa melalui perantara tidak resmi.
+              {t('detailLowongan.sidebar.consentText')}
             </label>
           </div>
           {errors.consent && (
@@ -297,11 +301,11 @@ export default function DetailSidebar() {
             {isSubmitting ? (
               <>
                 <span className="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
-                <span>Memproses...</span>
+                <span>{t('detailLowongan.sidebar.submittingBtn')}</span>
               </>
             ) : (
               <>
-                <span>Kirim Lamaran Sekarang</span>
+                <span>{t('detailLowongan.sidebar.submitBtn')}</span>
                 <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </>
             )}
@@ -315,13 +319,13 @@ export default function DetailSidebar() {
               <span className="material-symbols-outlined text-[36px]">task_alt</span>
             </div>
             <span className="inline-block px-2 py-0.5 bg-tertiary-container text-tertiary-fixed font-label-eyebrow text-label-eyebrow rounded mb-2">
-              KODE TIKET: ARINDO-TW-890
+              {t('detailLowongan.sidebar.successBadge')}
             </span>
             <h3 className="font-headline-md text-headline-md text-on-surface mb-2">
-              Lamaran Berhasil Diterima!
+              {t('detailLowongan.sidebar.successTitle')}
             </h3>
             <p className="font-body-sm text-body-sm text-on-surface-variant max-w-xs mb-space-lg">
-              Data Anda telah masuk ke sistem pra-seleksi SISKOP2MI PT Amal Ichwan Arindo. Petugas verifikator kami akan menghubungi Anda via WhatsApp dalam 1x24 jam kerja.
+              {t('detailLowongan.sidebar.successDesc')}
             </p>
             <button
               className="px-space-md py-2 bg-surface-container text-on-surface font-label-button text-label-button rounded hover:bg-surface-container-high transition-colors"
@@ -329,7 +333,7 @@ export default function DetailSidebar() {
               type="button"
               onClick={handleReset}
             >
-              Kirim Formulir Lain
+              {t('detailLowongan.sidebar.resetBtn')}
             </button>
           </div>
         )}
@@ -341,14 +345,14 @@ export default function DetailSidebar() {
           <span className="material-symbols-outlined text-error text-[24px] shrink-0 mt-0.5">policy</span>
           <div>
             <h4 className="font-label-button text-label-button font-bold text-on-error-container">
-              PERINGATAN ANTI-PUNGLI &amp; BEBAS CALO
+              {t('detailLowongan.sidebar.fraudWarningTitle')}
             </h4>
             <p className="font-body-sm text-body-sm text-on-error-container/90 mt-1 leading-snug">
-              PT Amal Ichwan Arindo tidak pernah memungut uang muka pendaftaran melalui rekening perseorangan. Waspadai pihak luar atau calo yang menjanjikan jalur instan tanpa wawancara resmi.
+              {t('detailLowongan.sidebar.fraudWarningDesc')}
             </p>
             <div className="mt-space-sm pt-space-sm border-t border-error-container/40 flex items-center justify-between flex-wrap gap-2">
               <span className="font-label-caption text-label-caption text-on-error-container font-semibold">
-                Hotline Pengaduan Resmi:
+                {t('detailLowongan.sidebar.hotlineLabel')}
               </span>
               <a className="inline-flex items-center gap-1 font-label-button text-label-button text-on-error-container underline hover:opacity-80" href="tel:+62215558900">
                 <span className="material-symbols-outlined text-[16px]">call</span>
@@ -366,16 +370,16 @@ export default function DetailSidebar() {
             <span className="material-symbols-outlined text-[18px]">domain_verification</span>
           </div>
           <div>
-            <h4 className="font-label-button text-label-button text-on-surface">Kantor Operasional Penempatan</h4>
-            <p className="font-label-caption text-label-caption text-secondary">PT Amal Ichwan Arindo — Head Office</p>
+            <h4 className="font-label-button text-label-button text-on-surface">{t('detailLowongan.sidebar.officeTitle')}</h4>
+            <p className="font-label-caption text-label-caption text-secondary">{t('detailLowongan.sidebar.officeCompany')}</p>
           </div>
         </div>
         <p className="font-label-caption text-label-caption text-on-surface-variant">
-          Gedung Perkantoran Arindo, Jl. Raya Protokol No. 88, Jakarta Selatan. Layanan konsultasi langsung dibuka Senin - Jumat (08.30 - 17.00 WIB).
+          {t('detailLowongan.sidebar.officeAddress')}
         </p>
         <div className="pt-2 flex items-center gap-space-xs text-secondary font-label-caption text-label-caption">
           <span className="material-symbols-outlined text-[14px]">schedule</span>
-          <span>Rata-rata Waktu Proses Keberangkatan: 60 - 75 Hari Kerja</span>
+          <span>{t('detailLowongan.sidebar.processDuration')}</span>
         </div>
       </div>
     </aside>

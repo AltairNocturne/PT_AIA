@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function LowonganInquiryForm() {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -39,13 +41,13 @@ export default function LowonganInquiryForm() {
           <div className="flex flex-col gap-2">
             <div className="inline-flex items-center gap-1 text-on-tertiary-container font-label-eyebrow text-label-eyebrow uppercase tracking-widest">
               <span className="material-symbols-outlined text-[16px]">how_to_reg</span>
-              <span>Registrasi Resmi Calon Kandidat</span>
+              <span>{t('lowongan.inquiry.eyebrow')}</span>
             </div>
             <h2 className="font-headline-lg text-headline-lg text-primary font-bold tracking-tight">
-              Konsultasikan Karir &amp; Mulai Proses Penempatan Anda
+              {t('lowongan.inquiry.title')}
             </h2>
             <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              Tim konsultan penempatan luar negeri kami akan melakukan pra-skrining berkas dan memandu proses tahapan medis, pelatihan bahasa di BLK Arindo, hingga penandatanganan Perjanjian Penempatan Resmi.
+              {t('lowongan.inquiry.desc')}
             </p>
           </div>
           {/* 3-Step Flow Diagram */}
@@ -53,24 +55,24 @@ export default function LowonganInquiryForm() {
             <div className="flex items-start gap-3">
               <span className="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0">1</span>
               <div>
-                <h4 className="font-body-sm text-body-sm font-bold text-primary">Verifikasi Data &amp; Minat</h4>
-                <p className="font-label-caption text-label-caption text-on-surface-variant">Tim rekrutmen mencocokkan profil Anda dengan izin lowongan kerja (SIP2MI) aktif.</p>
+                <h4 className="font-body-sm text-body-sm font-bold text-primary">{t('lowongan.inquiry.step1Title')}</h4>
+                <p className="font-label-caption text-label-caption text-on-surface-variant">{t('lowongan.inquiry.step1Desc')}</p>
               </div>
             </div>
             <div className="h-4 border-l border-dashed border-outline-variant ml-3.5 -my-2"></div>
             <div className="flex items-start gap-3">
               <span className="w-7 h-7 rounded-full bg-surface-container text-on-surface flex items-center justify-center font-bold text-xs shrink-0">2</span>
               <div>
-                <h4 className="font-body-sm text-body-sm font-bold text-primary">Uji Medis &amp; Pelatihan BLK</h4>
-                <p className="font-label-caption text-label-caption text-on-surface-variant">Pemeriksaan kesehatan resmi dan kursus sertifikasi kompetensi sesuai standar negara tujuan.</p>
+                <h4 className="font-body-sm text-body-sm font-bold text-primary">{t('lowongan.inquiry.step2Title')}</h4>
+                <p className="font-label-caption text-label-caption text-on-surface-variant">{t('lowongan.inquiry.step2Desc')}</p>
               </div>
             </div>
             <div className="h-4 border-l border-dashed border-outline-variant ml-3.5 -my-2"></div>
             <div className="flex items-start gap-3">
               <span className="w-7 h-7 rounded-full bg-surface-container text-on-surface flex items-center justify-center font-bold text-xs shrink-0">3</span>
               <div>
-                <h4 className="font-body-sm text-body-sm font-bold text-primary">Penerbitan Visa &amp; E-PMI</h4>
-                <p className="font-label-caption text-label-caption text-on-surface-variant">Penerbitan e-PMI melalui SISKOP2MI BP2MI serta Orientasi Pra-Pemberangkatan (OPP).</p>
+                <h4 className="font-body-sm text-body-sm font-bold text-primary">{t('lowongan.inquiry.step3Title')}</h4>
+                <p className="font-label-caption text-label-caption text-on-surface-variant">{t('lowongan.inquiry.step3Desc')}</p>
               </div>
             </div>
           </div>
@@ -80,8 +82,8 @@ export default function LowonganInquiryForm() {
               <span className="material-symbols-outlined text-[24px]">support_agent</span>
             </div>
             <div>
-              <h4 className="font-body-sm text-body-sm font-bold text-primary">Butuh Informasi Cepat?</h4>
-              <p className="font-label-caption text-label-caption text-on-surface-variant">Hubungi layanan konsultasi WhatsApp resmi pada jam operasional kerja (Senin-Jumat, 08:30 - 17:00 WIB).</p>
+              <h4 className="font-body-sm text-body-sm font-bold text-primary">{t('lowongan.inquiry.fastAssistanceTitle')}</h4>
+              <p className="font-label-caption text-label-caption text-on-surface-variant">{t('lowongan.inquiry.fastAssistanceDesc')}</p>
             </div>
           </div>
         </div>
@@ -89,18 +91,20 @@ export default function LowonganInquiryForm() {
         {/* Right Column: Interactive Registration Form */}
         <div className="lg:col-span-7 bg-surface-container-lowest p-space-lg sm:p-space-xl rounded-xl shadow-sm flex flex-col gap-6">
           <div>
-            <h3 className="font-headline-md text-headline-md text-primary font-bold">Formulir Peminatan Karir</h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">Mohon isi data diri sesuai dengan identitas KTP dan Paspor Anda.</p>
+            <h3 className="font-headline-md text-headline-md text-primary font-bold">{t('lowongan.inquiry.formTitle')}</h3>
+            <p className="font-body-sm text-body-sm text-on-surface-variant">{t('lowongan.inquiry.formSubtitle')}</p>
           </div>
           <form className="flex flex-col gap-5" id="candidateInquiryForm" onSubmit={handleSubmit}>
             {/* Form Row 1: Nama Lengkap */}
             <div className="flex flex-col gap-1.5">
-              <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="fullName">Nama Lengkap (Sesuai KTP/Paspor) *</label>
+              <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="fullName">
+                {t('lowongan.inquiry.fullNameLabel')}
+              </label>
               <input
                 className="w-full h-11 px-3 bg-surface rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20"
                 id="fullName"
                 name="fullName"
-                placeholder="Contoh: Muhammad Rizky Pratama"
+                placeholder={t('lowongan.inquiry.fullNamePlaceholder')}
                 required
                 type="text"
                 value={formData.fullName}
@@ -110,7 +114,9 @@ export default function LowonganInquiryForm() {
             {/* Form Row 2: Kontak WhatsApp & Email */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="whatsappNumber">Nomor WhatsApp Aktif *</label>
+                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="whatsappNumber">
+                  {t('lowongan.inquiry.whatsappLabel')}
+                </label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 font-body-sm text-body-sm text-outline font-medium">+62</span>
                   <input
@@ -126,12 +132,14 @@ export default function LowonganInquiryForm() {
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="emailAddress">Alamat Email *</label>
+                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="emailAddress">
+                  {t('lowongan.inquiry.emailLabel')}
+                </label>
                 <input
                   className="w-full h-11 px-3 bg-surface rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20"
                   id="emailAddress"
                   name="emailAddress"
-                  placeholder="nama@email.com"
+                  placeholder={t('lowongan.inquiry.emailPlaceholder')}
                   required
                   type="email"
                   value={formData.emailAddress}
@@ -142,7 +150,9 @@ export default function LowonganInquiryForm() {
             {/* Form Row 3: Pendidikan & Negara Tujuan */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="educationLevel">Pendidikan Terakhir *</label>
+                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="educationLevel">
+                  {t('lowongan.inquiry.educationLabel')}
+                </label>
                 <select
                   className="w-full h-11 px-3 bg-surface rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20"
                   id="educationLevel"
@@ -151,16 +161,18 @@ export default function LowonganInquiryForm() {
                   value={formData.educationLevel}
                   onChange={(e) => setFormData({ ...formData, educationLevel: e.target.value })}
                 >
-                  <option value="">Pilih Jenjang</option>
-                  <option value="smp">SMP / Sederajat</option>
-                  <option value="sma">SMA / MA</option>
-                  <option value="smk">SMK Kejuruan</option>
-                  <option value="d3">Diploma (D3)</option>
-                  <option value="s1">Sarjana (S1 / D4)</option>
+                  <option value="">{t('lowongan.inquiry.educationSelectPlaceholder')}</option>
+                  <option value="smp">{t('lowongan.inquiry.eduSmp')}</option>
+                  <option value="sma">{t('lowongan.inquiry.eduSma')}</option>
+                  <option value="smk">{t('lowongan.inquiry.eduSmk')}</option>
+                  <option value="d3">{t('lowongan.inquiry.eduD3')}</option>
+                  <option value="s1">{t('lowongan.inquiry.eduS1')}</option>
                 </select>
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="targetCountry">Pilihan Negara Penempatan *</label>
+                <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="targetCountry">
+                  {t('lowongan.inquiry.countryLabel')}
+                </label>
                 <select
                   className="w-full h-11 px-3 bg-surface rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20"
                   id="targetCountry"
@@ -169,24 +181,26 @@ export default function LowonganInquiryForm() {
                   value={formData.targetCountry}
                   onChange={(e) => setFormData({ ...formData, targetCountry: e.target.value })}
                 >
-                  <option value="">Pilih Negara</option>
-                  <option value="taiwan">Taiwan</option>
-                  <option value="jepang">Jepang</option>
-                  <option value="malaysia">Malaysia</option>
-                  <option value="timurtengah">Arab Saudi / UEA</option>
-                  <option value="polandia">Polandia</option>
-                  <option value="fleksibel">Fleksibel / Sesuai Rekomendasi Konsultan</option>
+                  <option value="">{t('lowongan.inquiry.countrySelectPlaceholder')}</option>
+                  <option value="taiwan">{t('lowongan.inquiry.countryTaiwan')}</option>
+                  <option value="jepang">{t('lowongan.inquiry.countryJapan')}</option>
+                  <option value="malaysia">{t('lowongan.inquiry.countryMalaysia')}</option>
+                  <option value="timurtengah">{t('lowongan.inquiry.countryMiddleEast')}</option>
+                  <option value="polandia">{t('lowongan.inquiry.countryPoland')}</option>
+                  <option value="fleksibel">{t('lowongan.inquiry.countryFlexible')}</option>
                 </select>
               </div>
             </div>
             {/* Form Row 4: Bidang Keahlian */}
             <div className="flex flex-col gap-1.5">
-              <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="skillFocus">Keahlian / Bidang Peminatan *</label>
+              <label className="font-label-caption text-label-caption font-bold text-on-surface" htmlFor="skillFocus">
+                {t('lowongan.inquiry.skillLabel')}
+              </label>
               <input
                 className="w-full h-11 px-3 bg-surface rounded-lg font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20"
                 id="skillFocus"
                 name="skillFocus"
-                placeholder="Contoh: Operator Mesin Bubut, Sertifikat Kaigo N4, Hospitality Service"
+                placeholder={t('lowongan.inquiry.skillPlaceholder')}
                 required
                 type="text"
                 value={formData.skillFocus}
@@ -195,11 +209,15 @@ export default function LowonganInquiryForm() {
             </div>
             {/* Form Row 5: Upload CV/Dokumen (Opsional) */}
             <div className="flex flex-col gap-1.5">
-              <label className="font-label-caption text-label-caption font-bold text-on-surface">Upload CV / Scan KTP (Opsional, PDF/JPG max 5MB)</label>
+              <label className="font-label-caption text-label-caption font-bold text-on-surface">
+                {t('lowongan.inquiry.uploadLabel')}
+              </label>
               <div className="border-2 border-dashed border-surface-container-highest rounded-lg p-4 bg-surface flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors">
                 <span className="material-symbols-outlined text-[28px] text-on-surface-variant">upload_file</span>
-                <p className="font-body-sm text-body-sm text-on-surface mt-1"><span className="font-semibold text-primary">Klik untuk unggah berkas</span> atau seret file ke sini</p>
-                <p className="font-label-caption text-label-caption text-outline">Format PDF, DOCX, atau JPG (Maksimal 5MB)</p>
+                <p className="font-body-sm text-body-sm text-on-surface mt-1">
+                  <span className="font-semibold text-primary">{t('lowongan.inquiry.uploadClick')}</span> {t('lowongan.inquiry.uploadDrag')}
+                </p>
+                <p className="font-label-caption text-label-caption text-outline">{t('lowongan.inquiry.uploadFormat')}</p>
               </div>
             </div>
             {/* Form Row 6: Persetujuan Privasi Data (Checklist) */}
@@ -214,7 +232,7 @@ export default function LowonganInquiryForm() {
                 onChange={(e) => setFormData({ ...formData, privacyConsent: e.target.checked })}
               />
               <label className="font-label-caption text-label-caption text-on-surface-variant leading-relaxed" htmlFor="privacyConsent">
-                Saya menyatakan bahwa data yang diisikan adalah benar dan bersedia dihubungi oleh staf resmi PT Amal Ichwan Arindo untuk proses verifikasi. Data saya dilindungi di bawah Undang-Undang Perlindungan Data Pribadi (UU PDP).
+                {t('lowongan.inquiry.privacyConsent')}
               </label>
             </div>
             {/* Submit Button */}
@@ -227,12 +245,12 @@ export default function LowonganInquiryForm() {
                 {isSubmitting ? (
                   <>
                     <span className="material-symbols-outlined text-[20px] animate-spin">refresh</span>
-                    <span>Memproses Berkas...</span>
+                    <span>{t('lowongan.inquiry.submittingBtn')}</span>
                   </>
                 ) : (
                   <>
                     <span className="material-symbols-outlined text-[20px]">send</span>
-                    <span>Kirimkan Formulir Peminatan</span>
+                    <span>{t('lowongan.inquiry.submitBtn')}</span>
                   </>
                 )}
               </button>
@@ -240,7 +258,7 @@ export default function LowonganInquiryForm() {
             {isSubmitted && (
               <div className="flex p-4 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm items-center gap-3" id="formSuccessAlert">
                 <span className="material-symbols-outlined text-on-tertiary-container">task_alt</span>
-                <span>Terima kasih! Formulir Anda telah tercatat. Konsultan resmi kami akan menghubungi Anda via WhatsApp dalam 1x24 jam kerja.</span>
+                <span>{t('lowongan.inquiry.successAlert')}</span>
               </div>
             )}
           </form>

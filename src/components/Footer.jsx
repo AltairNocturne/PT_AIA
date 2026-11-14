@@ -115,6 +115,18 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[14px] text-tertiary-fixed-dim">chevron_right</span>
+                <Link className="text-on-primary-container hover:text-on-primary transition-colors" to="/galeri">
+                  {t('navbar.gallery')}
+                </Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[14px] text-tertiary-fixed-dim">chevron_right</span>
+                <Link className="text-on-primary-container hover:text-on-primary transition-colors" to="/berita">
+                  {t('navbar.news')}
+                </Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[14px] text-tertiary-fixed-dim">chevron_right</span>
                 <Link className="text-on-primary-container hover:text-on-primary transition-colors" to="/layanan">
                   {t('navbar.intlPartnership')}
                 </Link>
